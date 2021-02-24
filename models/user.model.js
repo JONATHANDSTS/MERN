@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
       //followers ce sera un tableau donc contiendra des string donc des []
       type: [String],
     },
-    follwing: {
+    following: {
       type: [String],
     },
     likes: {
