@@ -11,6 +11,8 @@ const { checkUser, requireAuth } = require('./middleware/auth.middleware');
 const express = require("express");
 const app = express();
 const userRoutes = require('./routes/user.routes');
+const postRoutes = require('./routes/post.routes');
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // bodyparser va mettre en bon format quns requetes dans le body
@@ -28,6 +30,7 @@ app.get('/jwtid', requireAuth,(req,res)=>{
 
 //routes
 app.use('/api/user', userRoutes);
+app.use('/api/post',postRoutes);
 
 // server
 app.listen(PORT, () => {
