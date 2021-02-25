@@ -62,5 +62,20 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+//pour ccomparer le mot de passe au ;o;ent du login
+// le password est sale a la creation donc il faut appliquer le sel au password
+// et le compare a celui en BDD
+userSchema.statics.login = async function (email, password) {
+  const user = await this.findOne({ email });
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password);
+    if (auth) {
+      return user;
+    }
+    throw Error("incorrect password");
+  }
+  throw Error("incorrcet email");
+};
+
 const UserModel = mongoose.model("user", userSchema);
 module.exports = UserModel;
