@@ -6,10 +6,25 @@ const PORT = process.env.PORT || 3000;
 require("./config/db");
 
 const { checkUser, requireAuth } = require('./middleware/auth.middleware');
+const cors= require('cors');
 
 //express
 const express = require("express");
 const app = express();
+//par default il ya protection de cors donc refuse toute requete exterieur
+//tout le monde est autorise a faire des requete en utilisabt cors()
+//app.use(cors())
+//ici on va authorise uniquement le client local ainsi que quelque pqrqmetre
+const corsOptions = {
+  origin:process.env.CLIENT_URL,
+  credentials:true,
+  'allowedHeaders':['sessionId', 'Content-Type'],
+  'exposedHeaders':['sessionId'];
+  'preflightContinue':false,
+};
+
+app.use(cors({corsOptions}));
+
 const userRoutes = require('./routes/user.routes');
 const postRoutes = require('./routes/post.routes');
 
