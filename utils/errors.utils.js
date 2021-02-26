@@ -17,17 +17,24 @@ module.exports.signUpErrors = (err) => {
   return errors;
 };
 
-module.exports.signInErrors=(err)=>{
-    let errors = {email:'', password:''}
+module.exports.signInErrors = (err) => {
+  let errors = { email: "", password: "" };
 
-    if (err.message.includes("email"))
-    errors.email= "email inconnu";
+  if (err.message.includes("email")) errors.email = "email inconnu";
 
-    if (err.message.includes("password"))
-    errors.password= "erreur de password";
-    
+  if (err.message.includes("password")) errors.password = "erreur de password";
 
-    return errors;
+  return errors;
+};
 
+module.exports.uploadErrors = (err) => {
+  let errors = { format: "", maxSize: "" };
 
+  if (err.message.includes("invalid file"))
+    errors.format = "format incompatible";
+
+  if (err.message.includes("max size"));
+  errors.maxSize = "le fichier depasse 5mo";
+
+  return errors;
 };
