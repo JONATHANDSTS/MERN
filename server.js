@@ -19,7 +19,7 @@ const corsOptions = {
   origin:process.env.CLIENT_URL,
   credentials:true,
   'allowedHeaders':['sessionId', 'Content-Type'],
-  'exposedHeaders':['sessionId'];
+  'exposedHeaders':['sessionId'],
   'preflightContinue':false,
 };
 
